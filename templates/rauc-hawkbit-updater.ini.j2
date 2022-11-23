@@ -1,0 +1,20 @@
+[client]
+host = {{ env.HAWKBIT_SERVER_URL }}
+{%- if env.HAWKBIT_TENANT_ID is defined %}
+tenant_id = {{ env.HAWKBIT_TENANT_ID }}
+{%- endif%}
+target_name = {{ env.HAWKBIT_TARGET_NAME }}
+{%- if env.INSECURE_SERVER is defined and variable is sameas true %}
+ssl = false
+ssl_verify = false
+{%- endif %}
+auth_token = {{ env.HAWKBIT_AUTH_TOKEN }}
+
+[device]
+product = "DiscoSAT-Probe"
+model = {{ device.model }}
+serialnumber = {{ device.serialnumber }}
+hw_revision = {{ device.hw_revision }}
+
+[meta]
+config_version = {{ CONFIG_VERSION }}
