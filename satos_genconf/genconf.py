@@ -55,7 +55,14 @@ def getDeviceInfo(args):
         'hw_revision': dev.hw_revision(), 
     }
 
+# Opener for files with 0660 permissions
+def configOpener(path, flags):
+    return os.open(path, flags, 0o660)
+
 def run(args):
+    # Reset umask to 0
+    os.umask(0)
+
     # Load the secrets/environment from file if specified
     if args.env_file:
         load_dotenv(args.env_file, override=True)
@@ -66,5 +73,6 @@ def run(args):
         'CONFIG_VERSION': 1
     })
 
-    with open(args.output_file, 'w', encoding='utf8') as fp:
+    # Write the output config file. See configOpener for more details
+    with open(args.output_file, 'w', encoding='utf8', opener=configOpener) as fp:
         fp.write(result.rstrip() + '\n')
