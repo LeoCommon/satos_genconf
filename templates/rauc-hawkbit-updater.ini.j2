@@ -1,14 +1,21 @@
 [client]
-host = {{ env.HAWKBIT_SERVER_URL }}
+hawkbit_server = {{ env.HAWKBIT_SERVER_URL }}
 {%- if env.HAWKBIT_TENANT_ID is defined %}
 tenant_id = {{ env.HAWKBIT_TENANT_ID }}
 {%- endif%}
-target_name = {{ env.HAWKBIT_TARGET_NAME }}
-{%- if env.INSECURE_SERVER is defined and variable is sameas true %}
+target_name = {{ env.HAWKBIT_CONTROLLER_ID }}
+{%- if env.HAWKBIT_INSECURE_SERVER is defined %}
 ssl = false
 ssl_verify = false
 {%- endif %}
-auth_token = {{ env.HAWKBIT_AUTH_TOKEN }}
+auth_token = {{ env.HAWKBIT_SECURITY_TOKEN }}
+{%- if env.HAWKBIT_STREAM_BUNDLE is defined %} 
+stream_bundle = true {# If bundle streaming support is enabled we dont need a bundle download location #} 
+{%- elif env.HAWKBIT_DOWNLOAD_LOCATION is defined %} {# Set the bundle location if specified #} 
+bundle_download_location = {{ env.HAWKBIT_DOWNLOAD_LOCATION }}
+{%- else %} {# Fall back to the tmp folder if no location is specified #} 
+bundle_download_location = /tmp/satos.raucb
+{%- endif %}
 
 [device]
 product = "DiscoSAT-Probe"
