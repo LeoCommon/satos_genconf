@@ -16,6 +16,7 @@ setup(
     author_email='contact@martb.dev',
     long_description=read('README.md'),
     url="https://martb.dev",
+    # Warning: this does not install the dependencies on buildroot
     install_requires=[
         'python-dotenv>=0.21.0',
         'jinja2>=3.1.2'
