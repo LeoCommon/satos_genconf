@@ -41,6 +41,10 @@ class RPI4(RPI):
     def __str__(self):
         return "RPI4Device: " + super().__str__()
 
+class RPI5(RPI4):
+    def __str__(self):
+        return "RPI5Device: " + super().__str__()
+
 class GenericAMD64(Device):
     # Return the primary mac address without formatting
     def _serial(self) -> str:

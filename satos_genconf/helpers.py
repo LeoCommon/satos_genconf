@@ -10,7 +10,8 @@ class RaucConfig:
     # Available device compatible strings, keep in sync with added devices!
     COMPAT_STRING_RPI3 = 'satos-rpi3-64'
     COMPAT_STRING_RPI4 = 'satos-rpi4-64'
-    
+    COMPAT_STRING_RPI5 = 'satos-rpi5-64'
+
     DEFAULT_CONFIG_LOCATION = str("/etc/rauc/system.conf")
     config = None | configparser.ConfigParser
 
@@ -64,6 +65,9 @@ class DeviceInfo:
     
     def __detectDevice(self) -> Device:
         compatibleString = self.getCompatible()
+
+        if compatibleString == RaucConfig.COMPAT_STRING_RPI5:
+            return RPI5()
 
         if compatibleString == RaucConfig.COMPAT_STRING_RPI4:
             return RPI4()
