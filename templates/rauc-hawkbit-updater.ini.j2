@@ -18,7 +18,7 @@ bundle_download_location = /tmp/satos.raucb
 {%- endif %}
 
 [device]
-product = "DiscoSAT-Probe"
+product = {{ device.product }}
 model = {{ device.model }}
 serialnumber = {{ device.serialnumber }}
 hw_revision = {{ device.hw_revision }}

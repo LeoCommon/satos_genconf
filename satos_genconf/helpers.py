@@ -53,7 +53,7 @@ class DeviceInfo:
 
     # Returns the product name, atm theres only one
     def product(self) -> str:
-        return "DiscoSAT-Probe"
+        return "LeoCommon-GroundStation"
 
     def hw_revision(self) -> str:
         print("Warning: hardware revision is not implemented")
