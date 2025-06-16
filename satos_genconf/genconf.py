@@ -50,6 +50,7 @@ def render_template(path, context):
 def getDeviceInfo(args): 
     dev = DeviceInfo(args.mock_run)
     return {
+        'product': dev.product(),
         'model': dev.model(),
         'serialnumber': dev.serialnumber(), 
         'hw_revision': dev.hw_revision(), 
